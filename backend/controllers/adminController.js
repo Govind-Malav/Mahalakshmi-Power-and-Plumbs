@@ -1,4 +1,4 @@
-import Product from "../models/product.js";
+import Product from "../models/Product.js";
 import Order from "../models/order.js";
 import User from "../models/user.js"; // Import User model directly for efficiency
 import { getAllUsers } from "./authController.js";
