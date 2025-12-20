@@ -23,7 +23,7 @@ const ProductsPage = () => {
         // Build query params for API
         let url = "/products";
         const queryParams = new URLSearchParams();
-        
+
         if (category) queryParams.append("category", category);
         if (filter) queryParams.append("filter", filter);
         if (searchTerm) queryParams.append("search", searchTerm);
@@ -32,7 +32,8 @@ const ProductsPage = () => {
           url += "?" + queryParams.toString();
         }
 
-        const res = await fetch(`http://localhost:5000/api${url}`);
+        const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+        const res = await fetch(`${apiUrl}${url}`);
         const data = await res.json();
 
         // ✅ NORMALIZE RESPONSE
