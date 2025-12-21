@@ -1,5 +1,5 @@
 import Order from "../models/order.js";
-import { sendOrderEmail } from "../utils/sendEmail.js";
+
 import PDFDocument from "pdfkit";
 
 // ================================
@@ -40,17 +40,7 @@ export const createOrder = async (req, res) => {
       userName: userName || "Customer"
     });
 
-    sendOrderEmail({
-      orderId: order._id,
-      userEmail: order.userEmail,
-      userName: order.userName,
-      items: order.items,
-      totalAmount: order.totalAmount,
-      paymentMethod: order.paymentMethod,
-      paymentStatus: order.paymentStatus,
-      shippingAddress: order.shippingAddress,
-      createdAt: order.createdAt
-    }).catch((error) => console.error("❌ Failed to send order email details:", error));
+
 
     res.status(201).json({
       success: true,
