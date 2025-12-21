@@ -10,7 +10,6 @@
 
 ## 📸 Screenshots
 
-*(Add your application screenshots here)*
 
 | Landing Page | Vendor Dashboard |
 |:---:|:---:|
