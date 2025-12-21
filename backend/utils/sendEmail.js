@@ -6,6 +6,8 @@ export const sendOrderEmail = async (order) => {
       host: "smtp.gmail.com",
       port: 465,
       secure: true,
+      logger: true,
+      debug: true,
       auth: {
         user: process.env.ADMIN_EMAIL,
         pass: process.env.ADMIN_EMAIL_PASSWORD

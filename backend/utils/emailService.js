@@ -7,12 +7,14 @@ const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   secure: true, // true for 465, false for other ports
+  logger: true, // Log to console
+  debug: true, // Include SMTP traffic in logs
   auth: {
     user: process.env.ADMIN_EMAIL,
     pass: process.env.ADMIN_EMAIL_PASSWORD, // App Password
   },
   family: 4, // Force IPv4 to prevent connection timeouts
-  connectionTimeout: 60000, // 60 seconds (increased from 30)
+  connectionTimeout: 60000,
   greetingTimeout: 30000,
   tls: {
     rejectUnauthorized: false
