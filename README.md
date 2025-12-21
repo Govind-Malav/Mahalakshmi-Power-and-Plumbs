@@ -6,6 +6,13 @@
 
 > A premium, full-stack vendor management platform built for speed, security, and aesthetics. Features automated email notifications, PDF invoice generation, and a seamless ordering experience.
 
+<div align="center">
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Frontend-3b82f6?style=for-the-badge&logo=vercel&logoColor=white)](https://mahalakshmi-power-and-plumbs-4oog.vercel.app/)
+[![Backend API](https://img.shields.io/badge/API_Status-Backend-46a2da?style=for-the-badge&logo=render&logoColor=white)](https://mahalakshmi-power-and-plumbs.onrender.com)
+
+</div>
+
 ---
 
 ## 📸 Screenshots
