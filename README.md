@@ -6,6 +6,10 @@
 
 > A premium, full-stack vendor management platform built for speed, security, and aesthetics. Features automated email notifications, PDF invoice generation, and a seamless ordering experience.
 
+🔗 Live URLs:
+
+Frontend: https://mahalakshmi-power-and-plumbs-4oog.vercel.app/
+Backend: https://mahalakshmi-power-and-plumbs.onrender.com/
 ---
 
 ## 📸 Screenshots
