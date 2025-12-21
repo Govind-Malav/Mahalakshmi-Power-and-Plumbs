@@ -5,11 +5,12 @@ export const sendOrderEmail = async (order) => {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
-      secure: true, // true for 465, false for other ports
+      secure: true,
       auth: {
         user: process.env.ADMIN_EMAIL,
         pass: process.env.ADMIN_EMAIL_PASSWORD
-      }
+      },
+      family: 4 // Force IPv4 to prevent connection timeouts
     });
 
     const itemsHtml = order.items

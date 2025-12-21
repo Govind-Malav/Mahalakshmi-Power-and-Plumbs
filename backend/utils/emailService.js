@@ -11,6 +11,7 @@ const transporter = nodemailer.createTransport({
     user: process.env.ADMIN_EMAIL,
     pass: process.env.ADMIN_EMAIL_PASSWORD, // App Password
   },
+  family: 4 // Force IPv4 to prevent connection timeouts
 });
 
 export const sendSupportEmail = async ({ name, email, subject, message }) => {
