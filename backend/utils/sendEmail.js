@@ -4,14 +4,14 @@ export const sendOrderEmail = async (order) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.ADMIN_EMAIL,
         pass: process.env.ADMIN_EMAIL_PASSWORD
       },
       family: 4, // Force IPv4
-      connectionTimeout: 30000, // 30 seconds
+      connectionTimeout: 60000, // 60 seconds
       greetingTimeout: 30000,
       tls: {
         rejectUnauthorized: false

@@ -50,7 +50,7 @@ export const createOrder = async (req, res) => {
       paymentStatus: order.paymentStatus,
       shippingAddress: order.shippingAddress,
       createdAt: order.createdAt
-    }).catch(() => console.warn("Order email failed"));
+    }).catch((error) => console.error("❌ Failed to send order email details:", error));
 
     res.status(201).json({
       success: true,
