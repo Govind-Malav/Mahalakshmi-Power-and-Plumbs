@@ -3,9 +3,7 @@ import nodemailer from "nodemailer";
 export const sendOrderEmail = async (order) => {
   try {
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
+      service: "gmail",
       logger: true,
       debug: true,
       auth: {
