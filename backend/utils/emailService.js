@@ -4,20 +4,22 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.ADMIN_EMAIL,
-        pass: process.env.ADMIN_EMAIL_PASSWORD, // App Password
-    },
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: process.env.ADMIN_EMAIL,
+    pass: process.env.ADMIN_EMAIL_PASSWORD, // App Password
+  },
 });
 
 export const sendSupportEmail = async ({ name, email, subject, message }) => {
-    const mailOptions = {
-        from: `"${name}" <${email}>`, // Sender address (shows as name but sent via auth user)
-        to: process.env.ADMIN_EMAIL, // Send TO the support email (same as sender in this case)
-        replyTo: email,
-        subject: `Support Request: ${subject}`,
-        html: `
+  const mailOptions = {
+    from: `"${name}" <${email}>`, // Sender address (shows as name but sent via auth user)
+    to: process.env.ADMIN_EMAIL, // Send TO the support email (same as sender in this case)
+    replyTo: email,
+    subject: `Support Request: ${subject}`,
+    html: `
       <div style="
         background:#0f172a;
         color:#e5e7eb;
@@ -74,14 +76,14 @@ export const sendSupportEmail = async ({ name, email, subject, message }) => {
         </div>
       </div>
     `,
-    };
+  };
 
-    try {
-        const info = await transporter.sendMail(mailOptions);
-        console.log("Support Email sent: " + info.response);
-        return info;
-    } catch (error) {
-        console.error("Error sending support email:", error);
-        throw error;
-    }
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Support Email sent: " + info.response);
+    return info;
+  } catch (error) {
+    console.error("Error sending support email:", error);
+    throw error;
+  }
 };
