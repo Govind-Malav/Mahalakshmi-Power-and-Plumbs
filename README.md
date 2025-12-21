@@ -14,7 +14,7 @@
 
 | Landing Page | Vendor Dashboard |
 |:---:|:---:|
-| ![Landing Page Placeholder](https://via.placeholder.com/600x350?text=Landing+Page) | ![Dashboard Placeholder](https://via.placeholder.com/600x350?text=Vendor+Dashboard) |
+| ![Landing Page](./assets/landing-page.png) | ![Vendor Dashboard](./assets/vendor-dashboard.png) |
 
 ---
 
