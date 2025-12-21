@@ -11,7 +11,21 @@ const transporter = nodemailer.createTransport({
     user: process.env.ADMIN_EMAIL,
     pass: process.env.ADMIN_EMAIL_PASSWORD, // App Password
   },
-  family: 4 // Force IPv4 to prevent connection timeouts
+  family: 4, // Force IPv4 to prevent connection timeouts
+  connectionTimeout: 30000, // 30 seconds
+  greetingTimeout: 30000,
+  tls: {
+    rejectUnauthorized: false
+  }
+});
+
+// Verify connection configuration
+transporter.verify(function (error, success) {
+  if (error) {
+    console.log("❌ Email Service Error:", error);
+  } else {
+    console.log("✅ Email Service is ready to take messages");
+  }
 });
 
 export const sendSupportEmail = async ({ name, email, subject, message }) => {

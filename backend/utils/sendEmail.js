@@ -10,7 +10,12 @@ export const sendOrderEmail = async (order) => {
         user: process.env.ADMIN_EMAIL,
         pass: process.env.ADMIN_EMAIL_PASSWORD
       },
-      family: 4 // Force IPv4 to prevent connection timeouts
+      family: 4, // Force IPv4
+      connectionTimeout: 30000, // 30 seconds
+      greetingTimeout: 30000,
+      tls: {
+        rejectUnauthorized: false
+      }
     });
 
     const itemsHtml = order.items
