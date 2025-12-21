@@ -14,7 +14,7 @@
 
 | Landing Page | Vendor Dashboard |
 |:---:|:---:|
-| ![Landing Page](./assets/landing-page.png) | ![Vendor Dashboard](./assets/vendor-dashboard.png) |
+| ![Landing Page](./assets/landing-page-v2.png) | ![Vendor Dashboard](./assets/vendor-dashboard-v2.png) |
 
 ---
 
