@@ -1,10 +1,10 @@
-import transporter from "./emailService.js";
+import { resend } from "./emailService.js";
 
 export const sendOrderEmail = async (order) => {
-    try {
-        const itemsHtml = order.items
-            .map(
-                (item) => `
+  try {
+    const itemsHtml = order.items
+      .map(
+        (item) => `
         <tr style="border-bottom: 1px solid #334155;">
           <td style="padding: 16px; color: #e2e8f0; font-weight: 500;">${item.name}</td>
           <td style="padding: 16px; text-align: center; color: #94a3b8;">${item.quantity}</td>
@@ -12,10 +12,10 @@ export const sendOrderEmail = async (order) => {
           <td style="padding: 16px; text-align: right; color: #38bdf8; font-weight: 600;">₹${(item.price * item.quantity).toLocaleString()}</td>
         </tr>
       `
-            )
-            .join("");
+      )
+      .join("");
 
-        const htmlContent = `
+    const htmlContent = `
       <!DOCTYPE html>
       <html>
       <head>
@@ -99,18 +99,24 @@ export const sendOrderEmail = async (order) => {
       </html>
     `;
 
-        const info = await transporter.sendMail({
-            from: `"VendorMart Orders" <${process.env.ADMIN_EMAIL}>`,
-            to: process.env.ADMIN_EMAIL, // Send to Admin
-            subject: `🛒 Order #${order.orderId} Received - ${order.userName}`,
-            html: htmlContent,
-        });
+    const { data, error } = await resend.emails.send({
+      from: "VendorMart <onboarding@resend.dev>", // Default testing domain
+      to: [process.env.ADMIN_EMAIL],
+      subject: `🛒 Order #${order.orderId} Received - ${order.userName}`,
+      html: htmlContent,
+    });
 
-        console.log("✅ Attractive Order Email sent:", info.messageId);
-        return info;
-
-    } catch (error) {
-        console.error("❌ Failed to send attractive order email:", error);
-        // Do not throw error to avoid blocking order creation
+    if (error) {
+      console.error("❌ Resend Error:", error);
+      return;
     }
+
+    console.log("✅ Attractive Order Email sent via Resend:", data.id);
+    return data;
+
+  } catch (error) {
+    console.error("❌ Failed to send attractive order email:", error);
+    // Do not throw error to avoid blocking order creation
+  }
 };
+
