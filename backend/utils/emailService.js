@@ -1,13 +1,19 @@
-import { Resend } from 'resend';
-import dotenv from 'dotenv';
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 
 dotenv.config();
 
-const apiKey = process.env.RESEND_API_KEY;
+const emailUser = process.env.EMAIL_USER;
+const emailPass = process.env.EMAIL_PASS;
 
-if (!apiKey) {
-    console.warn("⚠️ WARNING: RESEND_API_KEY is missing. Email sending will fail.");
+if (!emailUser || !emailPass) {
+    console.warn("⚠️ WARNING: EMAIL_USER or EMAIL_PASS is missing. Email sending will fail.");
 }
 
-// Pass a placeholder if missing to prevent startup crash
-export const resend = new Resend(apiKey || "re_missing_key");
+export const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: emailUser,
+        pass: emailPass,
+    },
+});

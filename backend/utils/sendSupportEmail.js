@@ -1,8 +1,8 @@
-import { resend } from "./emailService.js";
+import { transporter } from "./emailService.js";
 
 export const sendSupportEmail = async ({ name, email, subject, message }) => {
-    try {
-        const htmlContent = `
+  try {
+    const htmlContent = `
       <!DOCTYPE html>
       <html>
       <head>
@@ -28,23 +28,18 @@ export const sendSupportEmail = async ({ name, email, subject, message }) => {
       </html>
     `;
 
-        const { data, error } = await resend.emails.send({
-            from: "VendorMart Support <onboarding@resend.dev>",
-            to: [process.env.ADMIN_EMAIL],
-            reply_to: email, // Allow replying directly to the user
-            subject: `📢 Support: ${subject}`,
-            html: htmlContent,
-        });
+    const info = await transporter.sendMail({
+      from: `"VendorMart Support" <${process.env.EMAIL_USER}>`,
+      to: process.env.ADMIN_EMAIL,
+      replyTo: email,
+      subject: `📢 Support: ${subject}`,
+      html: htmlContent,
+    });
 
-        if (error) {
-            console.error("❌ Resend Support Email Error:", error);
-            return;
-        }
+    console.log("✅ Support Email sent via Nodemailer:", info.messageId);
+    return info;
 
-        console.log("✅ Support Email sent:", data.id);
-        return data;
-
-    } catch (error) {
-        console.error("❌ Failed to send support email:", error);
-    }
+  } catch (error) {
+    console.error("❌ Failed to send support email:", error);
+  }
 };

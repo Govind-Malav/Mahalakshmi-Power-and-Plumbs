@@ -1,4 +1,4 @@
-import { resend } from "./emailService.js";
+import { transporter } from "./emailService.js";
 
 export const sendOrderEmail = async (order) => {
   try {
@@ -99,20 +99,15 @@ export const sendOrderEmail = async (order) => {
       </html>
     `;
 
-    const { data, error } = await resend.emails.send({
-      from: "VendorMart <onboarding@resend.dev>", // Default testing domain
-      to: [process.env.ADMIN_EMAIL],
+    const info = await transporter.sendMail({
+      from: `"VendorMart" <${process.env.EMAIL_USER}>`,
+      to: process.env.ADMIN_EMAIL,
       subject: `🛒 Order #${order.orderId} Received - ${order.userName}`,
       html: htmlContent,
     });
 
-    if (error) {
-      console.error("❌ Resend Error:", error);
-      return;
-    }
-
-    console.log("✅ Attractive Order Email sent via Resend:", data.id);
-    return data;
+    console.log("✅ Attractive Order Email sent via Nodemailer:", info.messageId);
+    return info;
 
   } catch (error) {
     console.error("❌ Failed to send attractive order email:", error);
