@@ -12,12 +12,10 @@
 [![Backend API](https://img.shields.io/badge/API_Status-Backend-46a2da?style=for-the-badge&logo=render&logoColor=white)](https://mahalakshmi-power-and-plumbs.onrender.com)
 
 </div>
-
 ---
 
 ## 📸 Screenshots
 
-*(Add your application screenshots here)*
 
 | Landing Page | Vendor Dashboard |
 |:---:|:---:|
