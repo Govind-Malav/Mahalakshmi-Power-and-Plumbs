@@ -33,17 +33,27 @@ export const CartProvider = ({ children }) => {
   }, [cart, cartKey]);
 
   const addToCart = (product, quantity = 1) => {
-    const existing = cart.find((item) => item.id === product.id);
+    // Resolve the unique ID (handle both MongoDB _id and frontend id)
+    const productId = product.id || product._id;
+
+    if (!productId) {
+      console.error("Cart Error: Product has no valid ID", product);
+      return;
+    }
+
+    const existing = cart.find((item) => (item.id || item._id) === productId);
+
     if (existing) {
       setCart(
         cart.map((item) =>
-          item.id === product.id
+          (item.id || item._id) === productId
             ? { ...item, quantity: item.quantity + quantity }
             : item
         )
       );
     } else {
-      setCart([...cart, { ...product, quantity }]);
+      // Ensure the stored item has a consistent 'id' property
+      setCart([...cart, { ...product, id: productId, quantity }]);
     }
   };
 
