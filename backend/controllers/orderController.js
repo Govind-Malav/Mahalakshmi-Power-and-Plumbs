@@ -1,5 +1,4 @@
 import Order from "../models/order.js";
-import { sendTelegramNotification } from "../utils/sendTelegramNotification.js";
 
 import PDFDocument from "pdfkit";
 
@@ -40,30 +39,6 @@ export const createOrder = async (req, res) => {
       userEmail,
       userName: userName || "Customer"
     });
-
-    // Send Telegram Notification (Admin)
-    const itemDetails = order.items
-      .map(item => `- *${item.name}* (x${item.qty}) - ₹${item.price}`)
-      .join('\n');
-
-    const adminMessage = `
-📦 *New Order Received!*
-
-*Order ID:* \`${order._id}\`
-*Customer:* ${order.userName}
-*Email:* ${order.userEmail}
-*Phone:* ${order.shippingAddress?.phone || "N/A"}
-*Total Amount:* ₹${order.totalAmount}
-*Payment Method:* ${order.paymentMethod}
-
-*Items:*
-${itemDetails}
-
-*Address:*
-${order.shippingAddress?.address}, ${order.shippingAddress?.city}, ${order.shippingAddress?.postalCode}
-`;
-
-    sendTelegramNotification(adminMessage);
 
     res.status(201).json({
       success: true,
