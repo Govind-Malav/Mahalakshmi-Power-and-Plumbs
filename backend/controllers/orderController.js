@@ -1,5 +1,4 @@
 import Order from "../models/order.js";
-import { sendOrderEmail } from "../utils/sendOrderEmail.js";
 import { sendTelegramNotification } from "../utils/sendTelegramNotification.js";
 
 import PDFDocument from "pdfkit";
@@ -40,19 +39,6 @@ export const createOrder = async (req, res) => {
       shippingAddress,
       userEmail,
       userName: userName || "Customer"
-    });
-
-    // Send beautiful email (fire and forget)
-    sendOrderEmail({
-      orderId: order._id,
-      userEmail: order.userEmail,
-      userName: order.userName,
-      items: order.items,
-      totalAmount: order.totalAmount,
-      paymentMethod: order.paymentMethod,
-      paymentStatus: order.paymentStatus,
-      shippingAddress: order.shippingAddress,
-      createdAt: order.createdAt
     });
 
     // Send Telegram Notification (Admin)
