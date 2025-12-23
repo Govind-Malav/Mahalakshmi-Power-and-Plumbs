@@ -52,7 +52,32 @@ export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Direct password comparison since hashing isn't implemented yet
+    // 1. Check for Super Admin (Env Variables)
+    if (
+      email === process.env.ADMIN_EMAIL &&
+      password === process.env.ADMIN_LOGIN_PASSWORD
+    ) {
+      const superAdmin = {
+        _id: "superadmin",
+        name: "Super Admin",
+        email: email,
+        contact: "9999999999",
+        role: "admin"
+      };
+
+      return res.json({
+        token: generateToken(superAdmin),
+        user: {
+          id: superAdmin._id,
+          name: superAdmin.name,
+          email: superAdmin.email,
+          contact: superAdmin.contact,
+          role: superAdmin.role
+        }
+      });
+    }
+
+    // 2. Normal Database User Login
     const user = await User.findOne({ email });
 
     if (user && user.password === password) {
