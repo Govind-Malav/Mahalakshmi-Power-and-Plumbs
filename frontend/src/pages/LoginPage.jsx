@@ -16,10 +16,11 @@ const LoginPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await login(email, password);
+      await login(email.trim(), password.trim());
       navigate("/home");
-    } catch {
-      alert("Invalid credentials");
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert(error.response?.data?.message || "Login failed. Please check your network or credentials.");
     } finally {
       setLoading(false);
     }
