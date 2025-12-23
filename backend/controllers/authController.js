@@ -50,7 +50,9 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
+    email = email?.trim();
+    password = password?.trim();
 
     // 1. Check for Super Admin (Env Variables)
     if (
