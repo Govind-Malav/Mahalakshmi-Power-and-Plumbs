@@ -20,7 +20,9 @@ const LoginPage = () => {
       navigate("/home");
     } catch (error) {
       console.error("Login failed:", error);
-      alert(error.response?.data?.message || "Login failed. Please check your network or credentials.");
+      // DEBUG: Show exact error details to user
+      const debugInfo = `Error: ${error.message}\nStatus: ${error.response?.status}\nURL: ${error.config?.baseURL}${error.config?.url}`;
+      alert(error.response?.data?.message || `Login Failed.\n${debugInfo}`);
     } finally {
       setLoading(false);
     }
