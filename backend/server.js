@@ -19,8 +19,8 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: "*", // Allow all origins for initial deployment. Change this to your Vercel URL later.
-  credentials: true
+  origin: "*",
+  credentials: false
 }));
 app.use(express.json());
 
