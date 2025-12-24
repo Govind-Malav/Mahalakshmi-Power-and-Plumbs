@@ -206,8 +206,8 @@ const Navbar = () => {
 
       {/* ===================== TOP MAIN NAVBAR ===================== */}
       <div className="bg-slate-900 text-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="flex items-center justify-between h-20">
 
             {/* LOGO */}
             <Link to="/home" className="text-2xl font-bold text-yellow-400">
@@ -215,7 +215,7 @@ const Navbar = () => {
             </Link>
 
             {/* MAIN CATEGORIES */}
-            <div className="hidden md:flex gap-6 ml-8 text-sm font-semibold">
+            <div className="hidden md:flex gap-10 ml-8 text-sm font-semibold">
               <Link
                 to="/category/electrical"
                 className="hover:text-yellow-400 transition"
@@ -233,7 +233,7 @@ const Navbar = () => {
             {/* SEARCH BAR */}
             <form
               onSubmit={handleSearch}
-              className="flex-1 mx-6 hidden md:flex"
+              className="flex-1 mx-10 hidden md:flex"
             >
               <input
                 type="text"
@@ -251,7 +251,7 @@ const Navbar = () => {
             </form>
 
             {/* RIGHT SIDE */}
-            <div className="flex items-center gap-6 text-sm">
+            <div className="flex items-center gap-10 text-sm">
 
               {/* AUTH & CART */}
               {user ? (
@@ -288,19 +288,19 @@ const Navbar = () => {
                       clearCart(); // Clear cart data on logout
                       navigate("/");
                     }}
-                    className="bg-red-500 px-3 py-1 rounded hover:bg-red-600"
+                    className="bg-red-500 px-4 py-1.5 rounded hover:bg-red-600 transition"
                   >
                     Logout
                   </button>
                 </>
               ) : (
                 <>
-                  <Link to="/login" className="hover:text-yellow-400">
+                  <Link to="/login" className="hover:text-yellow-400 transition">
                     Login
                   </Link>
                   <Link
                     to="/register"
-                    className="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-500"
+                    className="bg-yellow-400 text-black px-4 py-1.5 rounded hover:bg-yellow-500 transition font-semibold"
                   >
                     Sign Up
                   </Link>
@@ -314,45 +314,47 @@ const Navbar = () => {
 
       {/* ===================== SECONDARY UTILITY BAR ===================== */}
       <div className="bg-white border-b shadow-sm">
-        <div className="max-w-7xl mx-auto px-6">
-          <ul className="flex items-center gap-8 py-3 text-sm font-medium text-gray-700">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="flex justify-center md:justify-start">
+            <ul className="flex items-center gap-12 py-3 text-sm font-medium text-gray-700 overflow-x-auto no-scrollbar">
 
-            <li
-              onClick={() => navigate("/products?filter=deals")}
-              className="cursor-pointer hover:text-yellow-500 flex items-center gap-1"
-            >
-              🔥 Deals
-            </li>
+              <li
+                onClick={() => navigate("/products?filter=deals")}
+                className="cursor-pointer hover:text-yellow-500 flex items-center gap-2 whitespace-nowrap transition"
+              >
+                🔥 Deals
+              </li>
 
-            <li
-              onClick={() => navigate("/products?filter=best-sellers")}
-              className="cursor-pointer hover:text-yellow-500 flex items-center gap-1"
-            >
-              ⭐ Best Sellers
-            </li>
+              <li
+                onClick={() => navigate("/products?filter=best-sellers")}
+                className="cursor-pointer hover:text-yellow-500 flex items-center gap-2 whitespace-nowrap transition"
+              >
+                ⭐ Best Sellers
+              </li>
 
-            <li
-              onClick={() => navigate("/products?filter=new-arrivals")}
-              className="cursor-pointer hover:text-yellow-500 flex items-center gap-1"
-            >
-              🆕 New Arrivals
-            </li>
+              <li
+                onClick={() => navigate("/products?filter=new-arrivals")}
+                className="cursor-pointer hover:text-yellow-500 flex items-center gap-2 whitespace-nowrap transition"
+              >
+                🆕 New Arrivals
+              </li>
 
-            <li
-              onClick={() => navigate("/profile")}
-              className="cursor-pointer hover:text-yellow-500 flex items-center gap-1"
-            >
-              🚚 Track Order
-            </li>
+              <li
+                onClick={() => navigate("/profile")}
+                className="cursor-pointer hover:text-yellow-500 flex items-center gap-2 whitespace-nowrap transition"
+              >
+                🚚 Track Order
+              </li>
 
-            <li
-              onClick={() => navigate("/support")}
-              className="cursor-pointer hover:text-yellow-500 flex items-center gap-1"
-            >
-              📞 Support
-            </li>
+              <li
+                onClick={() => navigate("/support")}
+                className="cursor-pointer hover:text-yellow-500 flex items-center gap-2 whitespace-nowrap transition"
+              >
+                📞 Support
+              </li>
 
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
 
