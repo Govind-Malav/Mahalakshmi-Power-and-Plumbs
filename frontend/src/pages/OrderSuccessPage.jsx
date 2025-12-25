@@ -19,10 +19,10 @@ const OrderSuccessPage = () => {
       </div>
 
       <div className="max-w-2xl mx-auto relative z-10">
-        
+
         {/* Success Container */}
         <div className={`transform transition-all duration-1000 ${animate ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}>
-          
+
           {/* Checkmark Animation */}
           <div className="flex justify-center mb-8">
             <div className="relative w-32 h-32">
@@ -47,7 +47,7 @@ const OrderSuccessPage = () => {
 
           {/* Main Card */}
           <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 mb-8 backdrop-blur-sm border border-white/20">
-            
+
             {/* Heading */}
             <h1 className="text-4xl md:text-5xl font-bold text-center bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-3">
               Order Placed Successfully! 🎉
@@ -63,7 +63,7 @@ const OrderSuccessPage = () => {
 
             {/* Message */}
             <p className="text-slate-600 text-lg text-center mb-8 leading-relaxed">
-              Thank you for choosing us! Your order has been confirmed and is being processed. 
+              Thank you for choosing us! Your order has been confirmed and is being processed.
               You'll receive email updates with tracking information.
             </p>
 
@@ -130,7 +130,7 @@ const OrderSuccessPage = () => {
             >
               <span className="inline-flex items-center">
                 <span className="text-xl mr-2">📋</span>
-                Track My Order
+                Order Details
               </span>
             </Link>
 
