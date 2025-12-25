@@ -367,7 +367,7 @@ const ProfilePage = () => {
 
             <div className="px-8 pb-8 -mt-16 relative">
               <div className="flex justify-between items-end mb-6">
-                <div className="w-32 h-32 rounded-3xl bg-slate-900 border-4 border-slate-800 flex items-center justify-center overflow-hidden shadow-xl relative group">
+                <div className="w-32 h-32 rounded-3xl bg-slate-900 flex items-center justify-center overflow-hidden shadow-xl relative group">
                   <img
                     src="/images/profile-user.png"
                     alt="Profile"
