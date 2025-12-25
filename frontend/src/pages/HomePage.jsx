@@ -313,23 +313,26 @@ export default function HomePage() {
       </div>
 
       {/* TRUST BADGES (placed above footer) */}
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {[
-            { icon: "⚡", title: "Quality Products" },
-            { icon: "🚚", title: "Fast Delivery" },
-            { icon: "💳", title: "Secure Payments" },
-            { icon: "🏪", title: "Trusted Vendor" }
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ y: -6 }}
-              className="p-6 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition"
-            >
-              <div className="text-3xl mb-3">{item.icon}</div>
-              <p className="font-semibold">{item.title}</p>
-            </motion.div>
-          ))}
+      <div className="bg-white py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-8 text-slate-800">What We Offer</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {[
+              { icon: "⚡", title: "Quality Products" },
+              { icon: "🚚", title: "Fast Delivery" },
+              { icon: "💳", title: "Secure Payments" },
+              { icon: "🏪", title: "Trusted Vendor" }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -6 }}
+                className="p-6 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition"
+              >
+                <div className="text-3xl mb-3">{item.icon}</div>
+                <p className="font-semibold">{item.title}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 
