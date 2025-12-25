@@ -35,13 +35,13 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
                                 onClick={onClose}
                                 className="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition"
                             >
-                                Cancel
+                                No
                             </button>
                             <button
                                 onClick={onConfirm}
                                 className="px-4 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-red-500 to-pink-600 text-white shadow-lg hover:shadow-red-500/25 transition transform hover:scale-105"
                             >
-                                Yes, Log Out
+                                Yes
                             </button>
                         </div>
                     </motion.div>
