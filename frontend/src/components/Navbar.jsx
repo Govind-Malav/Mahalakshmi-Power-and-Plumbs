@@ -183,6 +183,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import React, { useState } from "react";
+import LogoutModal from "./LogoutModal";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -190,6 +191,14 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
+  const handleLogoutConfirm = () => {
+    logout();
+    clearCart();
+    navigate("/");
+    setIsLogoutModalOpen(false);
+  };
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -283,11 +292,7 @@ const Navbar = () => {
                   )}
 
                   <button
-                    onClick={() => {
-                      logout();
-                      clearCart(); // Clear cart data on logout
-                      navigate("/");
-                    }}
+                    onClick={() => setIsLogoutModalOpen(true)}
                     className="bg-red-500 px-4 py-1.5 rounded hover:bg-red-600 transition"
                   >
                     Logout
@@ -358,7 +363,13 @@ const Navbar = () => {
         </div>
       </div>
 
-    </nav>
+      <LogoutModal
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={handleLogoutConfirm}
+      />
+
+    </nav >
   );
 };
 

@@ -147,6 +147,7 @@ import { useAuth } from "../context/AuthContext";
 import { getMyOrdersRequest } from "../services/orderService";
 import OrderTrackingBar from "../components/OrderTrackingBar";
 import { motion, AnimatePresence } from "framer-motion";
+import LogoutModal from "../components/LogoutModal";
 
 // Storage keys for contact and email
 const storageKey = (type, email) => `user${type}:${email || "guest"}`;
@@ -323,6 +324,12 @@ const ProfilePage = () => {
   const { user, logout } = useAuth();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
+  const handleLogoutConfirm = () => {
+    logout();
+    setIsLogoutModalOpen(false);
+  };
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -399,7 +406,7 @@ const ProfilePage = () => {
               </div>
 
               <button
-                onClick={logout}
+                onClick={() => setIsLogoutModalOpen(true)}
                 className="w-full bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 group"
               >
                 <span>Sign Out</span>
@@ -517,7 +524,12 @@ const ProfilePage = () => {
 
       </div>
       <ContactEditor user={user} />
-    </div>
+      <LogoutModal
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={handleLogoutConfirm}
+      />
+    </div >
   );
 };
 
