@@ -325,13 +325,19 @@ export default function HomePage() {
             ].map((item, i) => (
               <motion.div
                 key={i}
-                whileHover={{ y: -6 }}
-                className="p-6 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition flex flex-col items-center"
+                whileHover={{ scale: 1.05 }}
+                className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-64 group"
               >
-                <div className="w-16 h-16 mb-4">
-                  <img src={item.image} alt={item.title} className="w-full h-full object-contain drop-shadow-md" />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90" />
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end h-full">
+                  <p className="font-bold text-white text-xl shadow-sm tracking-wide">{item.title}</p>
                 </div>
-                <p className="font-semibold text-slate-700">{item.title}</p>
               </motion.div>
             ))}
           </div>
