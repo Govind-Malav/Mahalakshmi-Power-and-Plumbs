@@ -367,8 +367,13 @@ const ProfilePage = () => {
 
             <div className="px-8 pb-8 -mt-16 relative">
               <div className="flex justify-between items-end mb-6">
-                <div className="w-32 h-32 rounded-3xl bg-slate-900 border-4 border-slate-800 flex items-center justify-center text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 shadow-xl">
-                  {user?.email ? user.email.charAt(0).toUpperCase() : "U"}
+                <div className="w-32 h-32 rounded-3xl bg-slate-900 border-4 border-slate-800 flex items-center justify-center overflow-hidden shadow-xl relative group">
+                  <img
+                    src="/images/profile-user.png"
+                    alt="Profile"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
                 <ContactEditToggle />
               </div>
