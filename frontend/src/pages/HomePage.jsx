@@ -318,18 +318,20 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-center mb-8 text-slate-800">What We Offer</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { icon: "⚡", title: "Quality Products" },
-              { icon: "🚚", title: "Fast Delivery" },
-              { icon: "💳", title: "Secure Payments" },
-              { icon: "🏪", title: "Trusted Vendor" }
+              { image: "/images/feature-quality.png", title: "Quality Products" },
+              { image: "/images/feature-delivery.png", title: "Fast Delivery" },
+              { image: "/images/feature-payment.png", title: "Secure Payments" },
+              { image: "/images/feature-trust.png", title: "Trusted Vendor" }
             ].map((item, i) => (
               <motion.div
                 key={i}
                 whileHover={{ y: -6 }}
-                className="p-6 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition"
+                className="p-6 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition flex flex-col items-center"
               >
-                <div className="text-3xl mb-3">{item.icon}</div>
-                <p className="font-semibold">{item.title}</p>
+                <div className="w-16 h-16 mb-4">
+                  <img src={item.image} alt={item.title} className="w-full h-full object-contain drop-shadow-md" />
+                </div>
+                <p className="font-semibold text-slate-700">{item.title}</p>
               </motion.div>
             ))}
           </div>
