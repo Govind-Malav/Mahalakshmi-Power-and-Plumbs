@@ -57,8 +57,8 @@ const OrdersPage = () => {
                   <b>Status:</b>{" "}
                   <span
                     className={`font-medium ${o.paymentStatus === "Paid"
-                        ? "text-green-600"
-                        : "text-yellow-600"
+                      ? "text-green-600"
+                      : "text-yellow-600"
                       }`}
                   >
                     {o.paymentStatus}
@@ -90,7 +90,7 @@ const OrdersPage = () => {
                 </p>
 
                 <a
-                  href={`${import.meta.env.VITE_API_URL}/api/orders/invoice/${o._id}`}
+                  href={`${import.meta.env.VITE_API_URL}/orders/invoice/${o._id}`}
                   target="_blank"
                   rel="noreferrer"
                   className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
