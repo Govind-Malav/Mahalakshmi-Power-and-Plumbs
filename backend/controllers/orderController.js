@@ -158,25 +158,27 @@ export const downloadInvoice = async (req, res) => {
     let grandTotal = 0;
 
     // ================= ITEMS (FINAL & CORRECT) =================
-    order.items.forEach((item) => {
-      const productName = item.name || "Product";
-      const qty = Number(item.qty || 1);
-      const price = Number(item.price || 0);
-      const lineTotal = qty * price;
+    if (order.items && order.items.length > 0) {
+      order.items.forEach((item) => {
+        const productName = item.name || "Product";
+        const qty = Number(item.qty || 1);
+        const price = Number(item.price || 0);
+        const lineTotal = qty * price;
 
-      grandTotal += lineTotal;
+        grandTotal += lineTotal;
 
-      doc.text(productName, 40, doc.y, { continued: true });
-      doc.text(qty.toString(), 260, doc.y, { continued: true });
-      doc.text(`₹${price}`, 320, doc.y, { continued: true });
-      doc.text(`₹${lineTotal}`, 400, doc.y);
-    });
+        doc.text(productName, 40, doc.y, { continued: true });
+        doc.text(qty.toString(), 260, doc.y, { continued: true });
+        doc.text(`Rs. ${price}`, 320, doc.y, { continued: true });
+        doc.text(`Rs. ${lineTotal}`, 400, doc.y);
+      });
+    }
 
     doc.moveDown();
 
     // ================= GRAND TOTAL =================
     doc.fontSize(13).text(
-      `Grand Total: ₹${grandTotal}`,
+      `Grand Total: Rs. ${grandTotal}`,
       { align: "right", underline: true }
     );
 
